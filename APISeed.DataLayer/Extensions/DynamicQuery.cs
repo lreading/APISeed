@@ -128,7 +128,7 @@ namespace APISeed.DataLayer.Extensions
 
             if (body.Left.NodeType == ExpressionType.Convert)
             {
-                // hack to remove the trailing ) when convering.
+                // Remove the trailing ')' when convering.
                 propertyName = propertyName.Replace(")", string.Empty);
             }
 
