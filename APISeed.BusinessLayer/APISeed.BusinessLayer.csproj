@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Email\Account.cs" />
+    <Compile Include="Email\BaseEmail.cs" />
+    <Compile Include="Email\ClientConfig.cs" />
+    <Compile Include="Email\MessageTemplates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
