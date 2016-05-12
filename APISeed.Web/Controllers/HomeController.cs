@@ -1,4 +1,6 @@
-﻿using System;
+﻿using APISeed.Domain;
+using APISeed.Web.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
