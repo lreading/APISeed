@@ -1,17 +1,14 @@
 ﻿using APISeed.DataLayer.Interfaces;
 using APISeed.DataLayer.Schema;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data.Linq;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APISeed.Tests
 {
     internal sealed class SetupTearDown
     {
+        // Singleton impelemtnation
         private static readonly SetupTearDown _instance = new SetupTearDown(new TestConnectionManager());
         private static bool _isInitialized = false;
 
@@ -22,6 +19,9 @@ namespace APISeed.Tests
             _connectionFactory = connectionFactory;
         }
 
+        /// <summary>
+        /// Singleton object to avoid conflicts between simultaneously running tests
+        /// </summary>
         internal static SetupTearDown Instance
         {
             get
@@ -32,6 +32,9 @@ namespace APISeed.Tests
 
         private IConnectionFactory _connectionFactory;
 
+        /// <summary>
+        /// Sets up the database structure for testing
+        /// </summary>
         internal void Setup()
         {
             if (!_isInitialized)
@@ -44,6 +47,9 @@ namespace APISeed.Tests
             }
         }
 
+        /// <summary>
+        /// Removes all items from the database
+        /// </summary>
         private void CleanDatabase()
         {
             using (var db = _connectionFactory.GetConnection())
@@ -55,6 +61,9 @@ namespace APISeed.Tests
             }
         }
 
+        /// <summary>
+        /// Creates the database if it does not already exist
+        /// </summary>
         private void CreateDatabaseIfNotExists()
         {
             var db = new DataContext(new TestConnectionManager().GetConnection());

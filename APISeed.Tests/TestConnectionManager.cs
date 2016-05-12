@@ -4,8 +4,15 @@ using System.Data.SqlClient;
 
 namespace APISeed.Tests
 {
+    /// <summary>
+    /// Connection Manager specifically for testing
+    /// </summary>
     public class TestConnectionManager : IConnectionFactory
     {
+        /// <summary>
+        /// Gets a IDbConnection that will not affect a real server
+        /// </summary>
+        /// <returns></returns>
         public IDbConnection GetConnection()
         {
             // Change this to your local sql instance name
