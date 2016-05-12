@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using APISeed.Web.Models;
 using APISeed.Web.Providers;
 using APISeed.Web.Results;
+using APISeed.DataLayer.Models;
 
 namespace APISeed.Web.Controllers
 {

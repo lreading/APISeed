@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using APISeed.Web.Providers;
 using APISeed.Web.Models;
+using APISeed.DataLayer.Models;
 
 namespace APISeed.Web
 {
