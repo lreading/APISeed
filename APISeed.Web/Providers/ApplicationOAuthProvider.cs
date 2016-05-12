@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using APISeed.Web.Models;
+using APISeed.DataLayer.Models;
 
 namespace APISeed.Web.Providers
 {
