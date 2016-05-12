@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISeed.Domain", "APISeed.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISeed.Tests", "APISeed.Tests\APISeed.Tests.csproj", "{E957EDE9-CB84-4843-92FD-1329FCCC386F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APISeed.BusinessLayer", "APISeed.BusinessLayer\APISeed.BusinessLayer.csproj", "{60A6BF06-72AE-4BC9-A5DB-0DDD965472CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{E957EDE9-CB84-4843-92FD-1329FCCC386F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E957EDE9-CB84-4843-92FD-1329FCCC386F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E957EDE9-CB84-4843-92FD-1329FCCC386F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A6BF06-72AE-4BC9-A5DB-0DDD965472CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A6BF06-72AE-4BC9-A5DB-0DDD965472CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A6BF06-72AE-4BC9-A5DB-0DDD965472CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A6BF06-72AE-4BC9-A5DB-0DDD965472CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

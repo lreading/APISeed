@@ -7,3 +7,5 @@ APISeed.Tests/obj/*
 APISeed.Web/bin/*
 APISeed.Web/obj/*
 packages/*
+APISeed.BusinessLayer/bin/*
+APISeed.BusinessLayer/obj/*
