@@ -1,0 +1,9 @@
+APISeed.DataLayer/bin/*
+APISeed.DataLayer/obj/*
+APISeed.Domain/bin/*
+APISeed.Domain/obj/*
+APISeed.Tests/bin/*
+APISeed.Tests/obj/*
+APISeed.Web/bin/*
+APISeed.Web/obj/*
+packages/*
