@@ -18,6 +18,8 @@ namespace APISeed.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            var startup = new DataLayer.Schema.Startup();
+            startup.Init();
         }
     }
 }
