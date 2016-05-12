@@ -96,6 +96,9 @@ namespace APISeed.DataLayer.Schema
             UserManager.Delete(user);
         }
 
+        /// <summary>
+        /// Mock identity table for testing purposes only
+        /// </summary>
         private const string _identitySqlForTest = @"CREATE TABLE AspNetUsers(
 	Id nvarchar(128) NOT NULL PRIMARY KEY,
 	Token_access_token nvarchar(256) NULL,
@@ -124,7 +127,10 @@ CREATE TABLE        AspNetRoles
 );
 
 ";
-
+        /// <summary>
+        /// Gets the database schema version.  Returns 0 if it does not exist.
+        /// </summary>
+        /// <returns></returns>
         private int GetDatabaseSchemaVersion()
         {
             var schemaVersion = 0;
@@ -138,6 +144,9 @@ CREATE TABLE        AspNetRoles
         /// <summary>
         /// Checks the schema version against the count of the schema updates collection to determine if an update is required.
         /// </summary>
+        /// <remarks>
+        /// Throws ApplicationException if it cannot connect to the database using the DefaultConnection connection string as defined in the web.config
+        /// </remarks>
         /// <returns></returns>
         private bool SchemaExists()
         {

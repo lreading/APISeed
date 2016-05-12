@@ -5,11 +5,17 @@ using System.Linq;
 
 namespace APISeed.Tests
 {
+    /// <summary>
+    /// Tests the basic CRUD operations
+    /// </summary>
     [TestClass]
     public class CRUDTests : BaseTest
     {
         private const string _testCategory = "CRUD";
 
+        /// <summary>
+        /// Tests the Get method for a basic repository object
+        /// </summary>
         [TestMethod]
         [TestCategory(_testCategory)]
         public void Get()
@@ -31,6 +37,9 @@ namespace APISeed.Tests
             // TODO: Assert the result.ShouldBeEquivalentTo(obj)
         }
 
+        /// <summary>
+        /// Tests the GetAll method for a basic repository object
+        /// </summary>
         [TestMethod]
         [TestCategory(_testCategory)]
         public void GetAll()
@@ -54,6 +63,9 @@ namespace APISeed.Tests
             }
         }
 
+        /// <summary>
+        /// Tests the Update method for a basic repository object
+        /// </summary>
         [TestMethod]
         [TestCategory(_testCategory)]
         public void Update()
@@ -61,6 +73,9 @@ namespace APISeed.Tests
             // TODO
         }
 
+        /// <summary>
+        /// Tests the Delete method for a basic repository object
+        /// </summary>
         [TestMethod]
         [TestCategory(_testCategory)]
         public void Delete()

@@ -2,6 +2,10 @@
 
 namespace APISeed.DataLayer.Interfaces
 {
+    /// <summary>
+    /// Interface to describe our repositories
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public interface IRepository<T>
     {
         T Get(int id);
