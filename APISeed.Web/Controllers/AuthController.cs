@@ -160,9 +160,8 @@ namespace APISeed.Web.Controllers
                 {
                     string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // TODO: Send email
-                    //var emailHelper = new Authentication();
-                    //await emailHelper.SendEmailConfirmationAsync(callbackUrl, user.Email);
+                    var emailHelper = new BusinessLayer.Email.Account();
+                    await emailHelper.SendEmailConfirmationAsync(callbackUrl, user.Email);
 
                     return RedirectToAction("RegistrationComplete", "Auth");
                 }
@@ -195,9 +194,8 @@ namespace APISeed.Web.Controllers
             {
                 string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // TODO: Send email
-                //var emailHelper = new Authentication();
-                //await emailHelper.SendEmailConfirmationAsync(callbackUrl, user.Email);
+                var emailHelper = new BusinessLayer.Email.Account();
+                await emailHelper.SendEmailConfirmationAsync(callbackUrl, user.Email);
             }
 
             return RedirectToAction("RegistrationComplete", "Auth");
@@ -243,9 +241,8 @@ namespace APISeed.Web.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Auth", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                // TODO: Send email
-                //var emailHelper = new Authentication();
-                //await emailHelper.SendForgotPasswordAsync(callbackUrl, user.Email);
+                var emailHelper = new BusinessLayer.Email.Account();
+                await emailHelper.SendForgotPasswordAsync(callbackUrl, user.Email);
                 return RedirectToAction("ForgotPasswordConfirmation", "Auth");
             }
 

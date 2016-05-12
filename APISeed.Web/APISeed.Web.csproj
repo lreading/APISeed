@@ -302,6 +302,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\APISeed.BusinessLayer\APISeed.BusinessLayer.csproj">
+      <Project>{60a6bf06-72ae-4bc9-a5db-0ddd965472cb}</Project>
+      <Name>APISeed.BusinessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\APISeed.DataLayer\APISeed.DataLayer.csproj">
       <Project>{005684ce-54f3-4e91-bddf-59598f2712b0}</Project>
       <Name>APISeed.DataLayer</Name>
