@@ -1,7 +1,9 @@
-﻿using System;
+﻿using APISeed.BusinessLayer.Errors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -20,6 +22,11 @@ namespace APISeed.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             var startup = new DataLayer.Schema.Startup();
             startup.Init();
+            HostingEnvironment.QueueBackgroundWorkItem(cancellation =>
+            {
+                var errorGenerator = new StaticErrorGenerator("Error", typeof(WebApiApplication), "http://localhost:61163/");
+                errorGenerator.GenerateStaticErrorPages(HostingEnvironment.ApplicationPhysicalPath + "\\ErrorPages");
+            });
         }
     }
 }
