@@ -1,6 +1,7 @@
 ﻿using APISeed.DataLayer.Interfaces;
 using APISeed.DataLayer.Models;
 using Dapper;
+using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -14,6 +15,7 @@ namespace APISeed.DataLayer.Schema
     /// </summary>
     public class Startup
     {
+        private readonly ILog _log = LogManager.GetLogger(typeof(Startup));
         private readonly IConnectionFactory _connectionFactory;
         private readonly bool _isTest = false;
 
@@ -66,11 +68,14 @@ namespace APISeed.DataLayer.Schema
                 }
                 else if (currentSchemaVersion > Scripts.UpdateScripts.Count)
                 {
+                    _log.ErrorFormat("Schema version is higher than application code.  Current Application Code Schema: {0} - Current Database Schmea: {1}", 
+                        Scripts.UpdateScripts.Count, currentSchemaVersion);
                     throw new ApplicationException("Database schema version is higher than code base version.");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _log.Fatal(ex);
                 throw;
             }
         }
