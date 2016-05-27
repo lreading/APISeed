@@ -2,14 +2,20 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace APISeed.Tests
+namespace APISeed.Tests.Integration
 {
     /// <summary>
     /// The base test class
     /// </summary>
     [TestClass]
-    public abstract class BaseTest
+    public abstract class IntegrationBaseTest
     {
+        public TestConnectionManager ConnectionManager { get; private set; }
+        public IntegrationBaseTest()
+        {
+            ConnectionManager = new TestConnectionManager();
+        }
+
         /// <summary>
         /// Setup required for all tests
         /// </summary>

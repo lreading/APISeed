@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace APISeed.Tests
+namespace APISeed.Tests.Integration
 {
     /// <summary>
     /// Connection Manager specifically for testing

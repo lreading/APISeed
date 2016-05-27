@@ -67,11 +67,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BaseTest.cs" />
-    <Compile Include="CRUDTests.cs" />
+    <Compile Include="Errors\ErrorLogTests.cs" />
+    <Compile Include="Integration\BaseTest.cs" />
+    <Compile Include="Integration\CRUDTests.cs" />
+    <Compile Include="Integration\ErrorCRUDTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SetupTearDown.cs" />
-    <Compile Include="TestConnectionManager.cs" />
+    <Compile Include="Integration\SetupTearDown.cs" />
+    <Compile Include="Integration\TestConnectionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -90,6 +92,12 @@
       <Project>{e0e06fe6-f7e1-4dbd-b21b-1c159b4b09fa}</Project>
       <Name>APISeed.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Errors\Error1.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
