@@ -10,6 +10,12 @@ namespace APISeed.Tests
     [TestClass]
     public abstract class BaseTest
     {
+        public TestConnectionManager ConnectionManager { get; private set; }
+        public BaseTest()
+        {
+            ConnectionManager = new TestConnectionManager();
+        }
+
         /// <summary>
         /// Setup required for all tests
         /// </summary>

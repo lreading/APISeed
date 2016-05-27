@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="CRUDTests.cs" />
+    <Compile Include="ErrorCRUDTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SetupTearDown.cs" />
     <Compile Include="TestConnectionManager.cs" />

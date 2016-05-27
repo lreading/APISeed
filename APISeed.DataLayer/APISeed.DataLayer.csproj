@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionFactory.cs" />
+    <Compile Include="ErrorRepository.cs" />
     <Compile Include="Extensions\DapperExtensions.cs" />
     <Compile Include="Extensions\DynamicQuery.cs" />
     <Compile Include="Extensions\QueryResult.cs" />

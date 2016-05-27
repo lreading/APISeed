@@ -72,7 +72,9 @@ SET                 Version = 2;
 
     MODIFICATIONS: 
             Added columns for 'Viewed', 'TimeViewedUTC', 'Resolved', 'TimeResolvedUTC'
+            Added integer id column
             Removed 'GO's due to Dapper constraints
+            Removed Sequence as key
 */
 
 -- ELMAH DDL script for Microsoft SQL Server 2000 or later.
@@ -138,6 +140,7 @@ END
 
 CREATE TABLE [dbo].[ELMAH_Error]
 (
+    [Id]                INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     [ErrorId]           UNIQUEIDENTIFIER NOT NULL,
     [Application]       NVARCHAR(60)  COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
     [Host]              NVARCHAR(50)  COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
@@ -147,7 +150,6 @@ CREATE TABLE [dbo].[ELMAH_Error]
     [User]              NVARCHAR(50)  COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
     [StatusCode]        INT NOT NULL,
     [TimeUtc]           DATETIME NOT NULL,
-    [Sequence]          INT IDENTITY (1, 1) NOT NULL,
     [AllXml]            NTEXT COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
     [Viewed]            BIT NOT NULL DEFAULT 0,
     [TimeViewedUTC]     DATETIME NULL,
@@ -156,18 +158,13 @@ CREATE TABLE [dbo].[ELMAH_Error]
 ) 
 ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]",
 
-@"ALTER TABLE [dbo].[ELMAH_Error] WITH NOCHECK ADD
-    CONSTRAINT [PK_ELMAH_Error] PRIMARY KEY NONCLUSTERED ([ErrorId]) ON [PRIMARY]",
-
-
 @"ALTER TABLE [dbo].[ELMAH_Error] ADD
     CONSTRAINT [DF_ELMAH_Error_ErrorId] DEFAULT (NEWID()) FOR [ErrorId]",
 
 @"CREATE NONCLUSTERED INDEX [IX_ELMAH_Error_App_Time_Seq] ON [dbo].[ELMAH_Error]
 (
     [Application]   ASC,
-    [TimeUtc]       DESC,
-    [Sequence]      DESC
+    [TimeUtc]       DESC
 ) 
 ON [PRIMARY]",
 @"
@@ -221,7 +218,6 @@ AS
     SET NOCOUNT ON
 
     DECLARE @FirstTimeUTC DATETIME
-    DECLARE @FirstSequence INT
     DECLARE @StartRow INT
     DECLARE @StartRowIndex INT
 
@@ -242,15 +238,13 @@ AS
         SET ROWCOUNT @StartRowIndex
 
         SELECT
-            @FirstTimeUTC = [TimeUtc],
-            @FirstSequence = [Sequence]
+            @FirstTimeUTC = [TimeUtc]
         FROM
             [ELMAH_Error]
         WHERE
             [Application] = @Application
         ORDER BY
-            [TimeUtc] DESC,
-            [Sequence] DESC
+            [TimeUtc] DESC
 
     END
     ELSE
@@ -281,11 +275,8 @@ AS
         [Application] = @Application
     AND
         [TimeUtc] <= @FirstTimeUTC
-    AND
-        [Sequence] <= @FirstSequence
     ORDER BY
-        [TimeUtc] DESC,
-        [Sequence] DESC
+        [TimeUtc] DESC
     FOR
         XML AUTO
 
