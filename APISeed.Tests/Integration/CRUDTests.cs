@@ -3,13 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace APISeed.Tests
+namespace APISeed.Tests.Integration
 {
     /// <summary>
     /// Tests the basic CRUD operations
     /// </summary>
     [TestClass]
-    public class CRUDTests : BaseTest
+    public class CRUDTests : IntegrationBaseTest
     {
         private const string _testCategory = "CRUD";
 

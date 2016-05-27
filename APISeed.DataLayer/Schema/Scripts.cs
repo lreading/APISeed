@@ -343,7 +343,7 @@ SET QUOTED_IDENTIFIER OFF
 SET ANSI_NULLS ON
 ", @"
 UPDATE              _SchemaVersion
-SET                 Version = 2;"
+SET                 Version = 3;"
         };
 
         #endregion

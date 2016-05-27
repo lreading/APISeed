@@ -6,10 +6,10 @@ using APISeed.Domain.Errors;
 using APISeed.DataLayer;
 using System.Linq;
 
-namespace APISeed.Tests
+namespace APISeed.Tests.Integration
 {
     [TestClass]
-    public class ErrorCRUDTest : BaseTest
+    public class ErrorCRUDTest : IntegrationBaseTest
     {
         private const string _testCategory = "Error CRUD";
 

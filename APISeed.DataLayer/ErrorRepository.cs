@@ -1,5 +1,8 @@
 ﻿using APISeed.Domain.Errors;
 using APISeed.DataLayer.Interfaces;
+using Dapper;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace APISeed.DataLayer
 {
@@ -28,6 +31,31 @@ namespace APISeed.DataLayer
                 resolved = item.Resolved,
                 timeResolvedUtc = item.TimeResolvedUtc
             };
+        }
+
+        public override ElmahErrorModel Get(int id)
+        {
+            using (var db = Connection)
+            {
+                return db.Query<ElmahErrorModel>(@"
+SELECT          *
+FROM            ELMAH_Error
+WHERE           Id = @id
+AND             Resolved = 0
+", new { id = id }).FirstOrDefault();
+            }
+        }
+
+        public override IEnumerable<ElmahErrorModel> GetAll()
+        {
+            using (var db = Connection)
+            {
+                return db.Query<ElmahErrorModel>(@"
+SELECT          *
+FROM            ELMAH_Error
+WHERE           Resolved = 0
+");
+            }
         }
     }
 }

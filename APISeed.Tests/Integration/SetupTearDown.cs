@@ -4,7 +4,7 @@ using Dapper;
 using System.Collections.Generic;
 using System.Data.Linq;
 
-namespace APISeed.Tests
+namespace APISeed.Tests.Integration
 {
     internal sealed class SetupTearDown
     {
