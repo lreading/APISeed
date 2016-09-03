@@ -1,6 +1,4 @@
-﻿using APISeed.DataLayer.Interfaces;
-using APISeed.DataLayer.Models;
-using Dapper;
+﻿using Dapper;
 using log4net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -13,18 +11,19 @@ namespace APISeed.DataLayer.Schema
     /// <summary>
     /// Handles updating the schema when necessary
     /// </summary>
-    public class Startup
+    public sealed class Startup
     {
         private readonly ILog _log = LogManager.GetLogger(typeof(Startup));
-        private readonly IConnectionFactory _connectionFactory;
+        private readonly Interfaces.IConnectionFactory _connectionFactory;
         private readonly bool _isTest = false;
+        public string UserId { get; set; }
 
         public Startup()
         {
             _connectionFactory = new ConnectionFactory();
         }
 
-        public Startup(IConnectionFactory connectionFactory)
+        public Startup(Interfaces.IConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
             _isTest = true;
@@ -68,7 +67,7 @@ namespace APISeed.DataLayer.Schema
                 }
                 else if (currentSchemaVersion > Scripts.UpdateScripts.Count)
                 {
-                    _log.ErrorFormat("Schema version is higher than application code.  Current Application Code Schema: {0} - Current Database Schmea: {1}", 
+                    _log.ErrorFormat("Schema version is higher than application code.  Current Application Code Schema: {0} - Current Database Schmea: {1}",
                         Scripts.UpdateScripts.Count, currentSchemaVersion);
                     throw new ApplicationException("Database schema version is higher than code base version.");
                 }
@@ -87,18 +86,47 @@ namespace APISeed.DataLayer.Schema
                 using (var db = _connection)
                 {
                     db.Execute(_identitySqlForTest);
+                    CreateUserForTest(db);
                 }
                 return;
             }
-            var context = new ApplicationDbContext();
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            var user = new ApplicationUser() { UserName = "test@applicationally.com", Email = "test@applicationally.com" };
+            var context = new Models.ApplicationDbContext();
+            var UserManager = new UserManager<Models.ApplicationUser>(new UserStore<Models.ApplicationUser>(context));
+            var user = new Models.ApplicationUser() { UserName = "test@applicationally.com", Email = "test@applicationally.com" };
+            user.Token = new Domain.Auth.BearerTokenModel();
 
             // The user will be deleted immediate, so the strength of the password and it being in plaintext should
             // be a relatively low risk.  Alternatively, you could use System.Web.Security.Membership.CreatePassword,
             // however, that is not guaranteed to meet the password strength requirements, which would then throw an error.
             var result = UserManager.Create(user, "alkASDFlkja23894902@#$Q90asdfm!");
             UserManager.Delete(user);
+        }
+
+        private void CreateUserForTest(IDbConnection conn)
+        {
+            var userId = Guid.NewGuid().ToString();
+            conn.Execute(@"
+INSERT INTO         AspNetUsers
+VALUES              (@userId,
+                        NULL,
+	                    NULL,
+                        NULL,
+	                    NULL,
+                        NULL,
+                        NULL,
+	                    NULL,
+	                    0,
+	                    NULL,
+                        NULL,
+                        NULL,
+	                    0,
+                        0,
+                        NULL,
+	                    0,
+                        0,
+	                    'TestUser');
+", new { userId = userId });
+            UserId = userId;
         }
 
         /// <summary>

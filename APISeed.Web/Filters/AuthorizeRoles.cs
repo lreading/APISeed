@@ -1,5 +1,4 @@
-﻿using APISeed.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
@@ -10,9 +9,9 @@ namespace APISeed.Web.Filters
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public class AuthorizeRoles : AuthorizeAttribute
     {
-        private IEnumerable<Roles> _roles;
+        private IEnumerable<Domain.Roles> _roles;
 
-        public AuthorizeRoles(params Roles[] roles) : base()
+        public AuthorizeRoles(params Domain.Roles[] roles) : base()
         {
             _roles = roles;
         }

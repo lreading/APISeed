@@ -37,9 +37,10 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\BearerTokenModel.cs" />
+    <Compile Include="EntityBase.cs" />
     <Compile Include="Errors\ElmahErrorModel.cs" />
     <Compile Include="Errors\ErrorDetail.cs" />
-    <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles.cs" />
   </ItemGroup>

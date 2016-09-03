@@ -68,9 +68,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Errors\ErrorLogTests.cs" />
-    <Compile Include="Integration\BaseTest.cs" />
-    <Compile Include="Integration\CRUDTests.cs" />
     <Compile Include="Integration\ErrorCRUDTest.cs" />
+    <Compile Include="Integration\GenericCRUDTest.cs" />
+    <Compile Include="Integration\IntegrationBaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Integration\SetupTearDown.cs" />
     <Compile Include="Integration\TestConnectionManager.cs" />

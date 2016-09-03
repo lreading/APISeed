@@ -6,17 +6,12 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using APISeed.Web.Models;
-using APISeed.Web.Providers;
-using APISeed.Web.Results;
-using APISeed.DataLayer.Models;
 
 namespace APISeed.Web.Controllers
 {
@@ -55,11 +50,11 @@ namespace APISeed.Web.Controllers
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
+        public Models.UserInfoViewModel GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-            return new UserInfoViewModel
+            return new Models.UserInfoViewModel
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
@@ -77,7 +72,7 @@ namespace APISeed.Web.Controllers
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
         [Route("ManageInfo")]
-        public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
+        public async Task<Models.ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
             IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
 
@@ -86,11 +81,11 @@ namespace APISeed.Web.Controllers
                 return null;
             }
 
-            List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
+            List<Models.UserLoginInfoViewModel> logins = new List<Models.UserLoginInfoViewModel>();
 
             foreach (IdentityUserLogin linkedAccount in user.Logins)
             {
-                logins.Add(new UserLoginInfoViewModel
+                logins.Add(new Models.UserLoginInfoViewModel
                 {
                     LoginProvider = linkedAccount.LoginProvider,
                     ProviderKey = linkedAccount.ProviderKey
@@ -99,14 +94,14 @@ namespace APISeed.Web.Controllers
 
             if (user.PasswordHash != null)
             {
-                logins.Add(new UserLoginInfoViewModel
+                logins.Add(new Models.UserLoginInfoViewModel
                 {
                     LoginProvider = LocalLoginProvider,
                     ProviderKey = user.UserName,
                 });
             }
 
-            return new ManageInfoViewModel
+            return new Models.ManageInfoViewModel
             {
                 LocalLoginProvider = LocalLoginProvider,
                 Email = user.UserName,
@@ -117,7 +112,7 @@ namespace APISeed.Web.Controllers
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
+        public async Task<IHttpActionResult> ChangePassword(Models.ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -137,7 +132,7 @@ namespace APISeed.Web.Controllers
 
         // POST api/Account/SetPassword
         [Route("SetPassword")]
-        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
+        public async Task<IHttpActionResult> SetPassword(Models.SetPasswordBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -156,7 +151,7 @@ namespace APISeed.Web.Controllers
 
         // POST api/Account/AddExternalLogin
         [Route("AddExternalLogin")]
-        public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
+        public async Task<IHttpActionResult> AddExternalLogin(Models.AddExternalLoginBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -194,7 +189,7 @@ namespace APISeed.Web.Controllers
 
         // POST api/Account/RemoveLogin
         [Route("RemoveLogin")]
-        public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
+        public async Task<IHttpActionResult> RemoveLogin(Models.RemoveLoginBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -235,7 +230,7 @@ namespace APISeed.Web.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
-                return new ChallengeResult(provider, this);
+                return new Results.ChallengeResult(provider, this);
             }
 
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
@@ -248,10 +243,10 @@ namespace APISeed.Web.Controllers
             if (externalLogin.LoginProvider != provider)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                return new ChallengeResult(provider, this);
+                return new Results.ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            DataLayer.Models.ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -265,7 +260,7 @@ namespace APISeed.Web.Controllers
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
-                AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                AuthenticationProperties properties = Providers.ApplicationOAuthProvider.CreateProperties(user.UserName);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -281,10 +276,10 @@ namespace APISeed.Web.Controllers
         // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
         [AllowAnonymous]
         [Route("ExternalLogins")]
-        public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
+        public IEnumerable<Models.ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
         {
             IEnumerable<AuthenticationDescription> descriptions = Authentication.GetExternalAuthenticationTypes();
-            List<ExternalLoginViewModel> logins = new List<ExternalLoginViewModel>();
+            List<Models.ExternalLoginViewModel> logins = new List<Models.ExternalLoginViewModel>();
 
             string state;
 
@@ -300,7 +295,7 @@ namespace APISeed.Web.Controllers
 
             foreach (AuthenticationDescription description in descriptions)
             {
-                ExternalLoginViewModel login = new ExternalLoginViewModel
+                Models.ExternalLoginViewModel login = new Models.ExternalLoginViewModel
                 {
                     Name = description.Caption,
                     Url = Url.Route("ExternalLogin", new
@@ -322,14 +317,14 @@ namespace APISeed.Web.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        public async Task<IHttpActionResult> Register(Models.RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new DataLayer.Models.ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -345,7 +340,7 @@ namespace APISeed.Web.Controllers
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        public async Task<IHttpActionResult> RegisterExternal(Models.RegisterExternalBindingModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -358,7 +353,7 @@ namespace APISeed.Web.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new DataLayer.Models.ApplicationUser() { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)

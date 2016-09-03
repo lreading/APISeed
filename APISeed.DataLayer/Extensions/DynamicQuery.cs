@@ -26,7 +26,7 @@ namespace APISeed.DataLayer.Extensions
             PropertyInfo[] props = item.GetType().GetProperties();
             string[] columns = props.Select(p => p.Name).Where(s => s.ToUpper() != "ID").ToArray();
 
-            var query = string.Format("INSERT INTO {0} ({1}) OUTPUT inserted.ID VALUES (@{2})",
+            var query = string.Format("declare @idtable table (id nvarchar(128)); INSERT INTO {0} ({1}) OUTPUT inserted.ID into @idtable VALUES (@{2}); select id from @idtable;",
                                  tableName,
                                  string.Join(",", columns.Select(x => "[" + x + "]")),
                                  string.Join(",@", columns));

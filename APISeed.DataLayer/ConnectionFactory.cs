@@ -1,5 +1,4 @@
-﻿using APISeed.DataLayer.Interfaces;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -8,7 +7,7 @@ namespace APISeed.DataLayer
     /// <summary>
     /// Handles connection related tasks for database work
     /// </summary>
-    internal class ConnectionFactory : IConnectionFactory
+    internal class ConnectionFactory : Interfaces.IConnectionFactory
     {
         /// <summary>
         /// Gets a SqlConnection using the DefaultConnection connectionString in the web.config

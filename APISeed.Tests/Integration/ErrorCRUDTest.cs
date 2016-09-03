@@ -1,66 +1,36 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using APISeed.Domain.Errors;
-using APISeed.DataLayer;
-using System.Linq;
 
 namespace APISeed.Tests.Integration
 {
     [TestClass]
-    public class ErrorCRUDTest : IntegrationBaseTest
+    public sealed class ErrorCRUDTest : GenericCRUDTest<Domain.Errors.ElmahErrorModel>
     {
+        #region Fields
+
         private const string _testCategory = "Error CRUD";
-
-        /// <summary>
-        /// Tests the Get method for a basic repository object
-        /// </summary>
-        [TestMethod]
-        [TestCategory(_testCategory)]
-        public void Get()
+        private Domain.Errors.ElmahErrorModel _model = new Domain.Errors.ElmahErrorModel
         {
-            // Arrange
-            var errorLog = new ElmahErrorModel
-            {
-                AllXml = "testing...",
-                Application = "Test App",
-                ErrorId = Guid.NewGuid(),
-                Host = "LocalHost",
-                Id = 1,
-                Message = "Houston we have a problem",
-                Resolved = false,
-                Source = string.Empty,
-                StatusCode = 500,
-                TimeResolvedUtc = null,
-                TimeUtc = DateTime.UtcNow,
-                TimeViewedUtc = null,
-                Type = "Custom Error",
-                User = string.Empty,
-                Viewed = false
-            };
-
-            var errorRepo = new ErrorRepository(ConnectionManager);
-            errorRepo.Add(errorLog);
-
-            // Act
-            var result = errorRepo.Get(errorLog.Id);
-
-            // Assert
-            result.ShouldBeEquivalentTo(errorLog);
-        }
-
-        /// <summary>
-        /// Tests the GetAll method for a basic repository object
-        /// </summary>
-        [TestMethod]
-        [TestCategory(_testCategory)]
-        public void GetAll()
+            AllXml = "testing...",
+            Application = "Test App",
+            ErrorId = Guid.NewGuid(),
+            Host = "LocalHost",
+            Id = 1,
+            Message = "Houston we have a problem",
+            Resolved = false,
+            Source = string.Empty,
+            StatusCode = 500,
+            TimeResolvedUtc = null,
+            TimeUtc = DateTime.UtcNow,
+            TimeViewedUtc = null,
+            Type = "Custom Error",
+            User = string.Empty,
+            Viewed = false
+        };
+        private List<Domain.Errors.ElmahErrorModel> _modelList = new List<Domain.Errors.ElmahErrorModel>
         {
-            // Arrange
-            var domainObjs = new List<ElmahErrorModel>
-            {
-                new ElmahErrorModel
+            new Domain.Errors.ElmahErrorModel
             {
                 AllXml = "testing...",
                 Application = "Test App",
@@ -78,7 +48,7 @@ namespace APISeed.Tests.Integration
                 User = string.Empty,
                 Viewed = false
             },
-                new ElmahErrorModel
+            new Domain.Errors.ElmahErrorModel
             {
                 AllXml = "testing...2",
                 Application = "Test App2",
@@ -97,22 +67,35 @@ namespace APISeed.Tests.Integration
                 Viewed = false
             }
         };
-            var errorRepo = new ErrorRepository(ConnectionManager);
 
-            foreach (var obj in domainObjs)
-            {
-                errorRepo.Add(obj);
-            }
+        #endregion
 
-            // Act
-            var result = errorRepo.GetAll().OrderBy(x => x.Id);
+        [TestInitialize]
+        public override void Setup()
+        {
+            base.Setup();
+            var repo = new DataLayer.ErrorRepository(ConnectionManager);
+            SetRepo(repo);
+        }
 
-            // Assert
-            foreach (var error in domainObjs)
-            {
-                result.FirstOrDefault(x => x.Id == error.Id)
-                    .ShouldBeEquivalentTo(error);
-            }
+        /// <summary>
+        /// Tests the Get method for a basic repository object
+        /// </summary>
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void Get()
+        {
+            GetTest(_model.Clone());
+        }
+
+        /// <summary>
+        /// Tests the GetAll method for a basic repository object
+        /// </summary>
+        [TestMethod]
+        [TestCategory(_testCategory)]
+        public void GetAll()
+        {
+            GetAllTestWithIntId(_modelList);
         }
 
         /// <summary>
@@ -122,37 +105,7 @@ namespace APISeed.Tests.Integration
         [TestCategory(_testCategory)]
         public void Update()
         {
-            // Arrange
-            var errorLog = new ElmahErrorModel
-            {
-                AllXml = "testing...3",
-                Application = "Test App3",
-                ErrorId = Guid.NewGuid(),
-                Host = "LocalHost3",
-                Id = 1,
-                Message = "Houston, we have a problem!3",
-                Resolved = false,
-                Source = string.Empty,
-                StatusCode = 500,
-                TimeResolvedUtc = null,
-                TimeUtc = DateTime.UtcNow,
-                TimeViewedUtc = null,
-                Type = "Custom Error3",
-                User = string.Empty,
-                Viewed = false
-            };
-
-            var errorRepo = new ErrorRepository(ConnectionManager);
-            errorRepo.Add(errorLog);
-            errorLog.Host = "LocalHost Updated";
-            errorLog.Type = "Updated as well!";
-            errorRepo.Update(errorLog);
-
-            // Act
-            var result = errorRepo.Get(errorLog.Id);
-            
-            // Assert
-            result.ShouldBeEquivalentTo(errorLog);
+            UpdateTest(_model.Clone());
         }
 
         /// <summary>
@@ -162,35 +115,7 @@ namespace APISeed.Tests.Integration
         [TestCategory(_testCategory)]
         public void Delete()
         {
-            // Arrange
-            var errorLog = new ElmahErrorModel
-            {
-                AllXml = "testing...3",
-                Application = "Test App3",
-                ErrorId = Guid.NewGuid(),
-                Host = "LocalHost3",
-                Id = 1,
-                Message = "Houston, we have a problem!3",
-                Resolved = false,
-                Source = string.Empty,
-                StatusCode = 500,
-                TimeResolvedUtc = null,
-                TimeUtc = DateTime.UtcNow,
-                TimeViewedUtc = null,
-                Type = "Custom Error3",
-                User = string.Empty,
-                Viewed = false
-            };
-
-            var errorRepo = new ErrorRepository(ConnectionManager);
-            errorRepo.Add(errorLog);
-
-            // Act
-            errorRepo.Delete(errorLog.Id);
-            var result = errorRepo.Get(errorLog.Id);
-
-            // Assert
-            Assert.IsNull(result);
+            DeleteTest(_model.Clone());
         }
     }
 }

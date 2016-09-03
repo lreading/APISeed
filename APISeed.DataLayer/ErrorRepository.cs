@@ -1,17 +1,15 @@
-﻿using APISeed.Domain.Errors;
-using APISeed.DataLayer.Interfaces;
-using Dapper;
+﻿using Dapper;
 using System.Linq;
 using System.Collections.Generic;
 
 namespace APISeed.DataLayer
 {
-    public class ErrorRepository : Repository<ElmahErrorModel>
+    public class ErrorRepository : Repository<Domain.Errors.ElmahErrorModel>
     {
         public ErrorRepository() : base("ELMAH_Error") { }
-        public ErrorRepository(IConnectionFactory connectionFactory) : base("ELMAH_Error", connectionFactory) { }
+        public ErrorRepository(Interfaces.IConnectionFactory connectionFactory) : base("ELMAH_Error", connectionFactory) { }
 
-        internal override dynamic Mapping(ElmahErrorModel item)
+        internal override dynamic Mapping(Domain.Errors.ElmahErrorModel item)
         {
             return new
             {
@@ -33,11 +31,11 @@ namespace APISeed.DataLayer
             };
         }
 
-        public override ElmahErrorModel Get(int id)
+        public override Domain.Errors.ElmahErrorModel Get(object id)
         {
             using (var db = Connection)
             {
-                return db.Query<ElmahErrorModel>(@"
+                return db.Query<Domain.Errors.ElmahErrorModel>(@"
 SELECT          *
 FROM            ELMAH_Error
 WHERE           Id = @id
@@ -46,11 +44,11 @@ AND             Resolved = 0
             }
         }
 
-        public override IEnumerable<ElmahErrorModel> GetAll()
+        public override IEnumerable<Domain.Errors.ElmahErrorModel> GetAll()
         {
             using (var db = Connection)
             {
-                return db.Query<ElmahErrorModel>(@"
+                return db.Query<Domain.Errors.ElmahErrorModel>(@"
 SELECT          *
 FROM            ELMAH_Error
 WHERE           Resolved = 0

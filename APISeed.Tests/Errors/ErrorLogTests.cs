@@ -1,5 +1,4 @@
-﻿using APISeed.Domain.Errors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using System.IO;
 
@@ -9,7 +8,7 @@ namespace APISeed.Tests.Errors
     public class ErrorLogTests
     {
         private const string _testCategory = "Error Log";
-        
+
         /// <summary>
         /// Tests the ability to parse an error message from its XML componenet
         /// </summary>
@@ -26,7 +25,7 @@ namespace APISeed.Tests.Errors
             const int expectedStatusCode = 404;
 
             // Act
-            var result = new ErrorDetail().FromXML(errorXml);
+            var result = new Domain.Errors.ErrorDetail().FromXML(errorXml);
 
             // Assert
             result.Host.ShouldBeEquivalentTo(expectedHost);

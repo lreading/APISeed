@@ -1,6 +1,4 @@
-﻿using APISeed.BusinessLayer.Errors;
-using Elmah;
-using System;
+﻿using Elmah;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,7 +23,7 @@ namespace APISeed.Web
             startup.Init();
             HostingEnvironment.QueueBackgroundWorkItem(cancellation =>
             {
-                var errorGenerator = new StaticErrorGenerator("Error", typeof(WebApiApplication), "http://localhost:61163/");
+                var errorGenerator = new BusinessLayer.Errors.StaticErrorGenerator("Error", typeof(WebApiApplication), "http://localhost:61163/");
                 errorGenerator.GenerateStaticErrorPages(HostingEnvironment.ApplicationPhysicalPath + "\\ErrorPages");
             });
         }

@@ -1,6 +1,4 @@
-﻿using APISeed.DataLayer.Interfaces;
-using APISeed.DataLayer.Schema;
-using Dapper;
+﻿using Dapper;
 using System.Collections.Generic;
 using System.Data.Linq;
 
@@ -11,10 +9,11 @@ namespace APISeed.Tests.Integration
         // Singleton impelemtnation
         private static readonly SetupTearDown _instance = new SetupTearDown(new TestConnectionManager());
         private static bool _isInitialized = false;
+        private static string _userId;
 
         static SetupTearDown() { }
 
-        private SetupTearDown(IConnectionFactory connectionFactory)
+        private SetupTearDown(DataLayer.Interfaces.IConnectionFactory connectionFactory)
         {
             _connectionFactory = connectionFactory;
         }
@@ -30,7 +29,7 @@ namespace APISeed.Tests.Integration
             }
         }
 
-        private IConnectionFactory _connectionFactory;
+        private DataLayer.Interfaces.IConnectionFactory _connectionFactory;
 
         /// <summary>
         /// Sets up the database structure for testing
@@ -40,11 +39,17 @@ namespace APISeed.Tests.Integration
             if (!_isInitialized)
             {
                 _isInitialized = true;
-                var schemaHelper = new Startup(new TestConnectionManager());
+                var schemaHelper = new DataLayer.Schema.Startup(new TestConnectionManager());
                 CreateDatabaseIfNotExists();
                 CleanDatabase();
                 schemaHelper.Init();
+                _userId = schemaHelper.UserId;
             }
+        }
+
+        internal string GetUserId()
+        {
+            return _userId;
         }
 
         /// <summary>

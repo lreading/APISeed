@@ -1,5 +1,4 @@
-﻿using APISeed.DataLayer.Interfaces;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
 namespace APISeed.Tests.Integration
@@ -7,7 +6,7 @@ namespace APISeed.Tests.Integration
     /// <summary>
     /// Connection Manager specifically for testing
     /// </summary>
-    public class TestConnectionManager : IConnectionFactory
+    public class TestConnectionManager : DataLayer.Interfaces.IConnectionFactory
     {
         /// <summary>
         /// Gets a IDbConnection that will not affect a real server

@@ -8,10 +8,12 @@ namespace APISeed.DataLayer.Interfaces
     /// <typeparam name="T"></typeparam>
     public interface IRepository<T>
     {
-        T Get(int id);
+        T Get(object id);
         IEnumerable<T> GetAll();
         void Add(T item);
         void Update(T item);
-        void Delete(int id);
+        void Delete(object id);
+        void SetUser(string userId);
+        void Guard(bool guardOn);
     }
 }

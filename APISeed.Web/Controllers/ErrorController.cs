@@ -1,5 +1,4 @@
-﻿using APISeed.Web.Models;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace APISeed.Web.Controllers
 {
@@ -16,7 +15,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error400()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Bad Request",
                 Title = "400"
@@ -30,7 +29,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error401()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Unauthorized",
                 Title = "401"
@@ -44,7 +43,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error403()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Forbidden.",
                 Title = "403"
@@ -58,7 +57,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error404()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Page not found.",
                 Title = "404"
@@ -72,7 +71,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error500()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Server Error",
                 Title = "500"
@@ -86,7 +85,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error503()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Out of Resources.",
                 Title = "503"
@@ -100,7 +99,7 @@ namespace APISeed.Web.Controllers
         /// <returns></returns>
         public ActionResult Error504()
         {
-            var vm = new ErrorPageViewModel
+            var vm = new Models.ErrorPageViewModel
             {
                 Message = "Gateway Time Out",
                 Title = "504"

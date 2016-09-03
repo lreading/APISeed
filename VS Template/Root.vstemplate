@@ -1,38 +1,31 @@
-﻿<VSTemplate Version="3.0.0" Type="ProjectGroup" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
-  <TemplateData>
-    <Name>API Seed Solution Template</Name>
-    <Description>Web API with cookie and token authentication and a repository pattern</Description>
-    <ProjectType>CSharp</ProjectType>
-    <ProjectSubType>
-    </ProjectSubType>
-    <SortOrder>1000</SortOrder>
-    <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>APISeed</DefaultName>
-    <ProvideDefaultName>true</ProvideDefaultName>
-    <LocationField>Enabled</LocationField>
-    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
-    <Icon>softwareoutside.png</Icon>
-  </TemplateData>
-  <TemplateContent>
-    <ProjectCollection>
-      <ProjectTemplateLink ProjectName="$safeprojectname$.BusinessLayer" CopyParameters="true">
-        BusinessLayer\BusinessLayer.vstemplate
-      </ProjectTemplateLink>
-      <ProjectTemplateLink ProjectName="$safeprojectname$.DataLayer" CopyParameters="true">
-        DataLayer\DataLayer.vstemplate
-      </ProjectTemplateLink>
-      <ProjectTemplateLink ProjectName="$safeprojectname$.Domain" CopyParameters="true">
-        Domain\Domain.vstemplate
-      </ProjectTemplateLink>
-      <ProjectTemplateLink ProjectName="$safeprojectname$.Tests" CopyParameters="true">
-        Tests\Tests.vstemplate
-      </ProjectTemplateLink>
-      <ProjectTemplateLink ProjectName="$safeprojectname$.Web" CopyParameters="true">
-        Web\Web.vstemplate
-      </ProjectTemplateLink>
-    </ProjectCollection>
-    <CustomParameters>
-	   <CustomParameter Name="$custom1$" Value="$ext_safeprojectname$" />
-    </CustomParameters>
-  </TemplateContent>
+<VSTemplate Version="2.0.0" Type="ProjectGroup"
+    xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+    <TemplateData>
+        <Name>API Seed</Name>
+        <Description>A seed project for new APIs</Description>
+        <Icon>softwareoutside.png</Icon>
+        <ProjectType>CSharp</ProjectType>
+    </TemplateData>
+    <TemplateContent>
+		<CustomParameters>
+		</CustomParameters>
+			<CustomParameter Name="$SolutionName$" Value="$safeprojectname$" />
+        <ProjectCollection>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.BusinessLayer" CopyParameters="true">
+                APISeed.BusinessLayer\APISeed.BusinessLayer.vstemplate
+            </ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.DataLayer" CopyParameters="true">
+                APISeed.DataLayer\APISeed.DataLayer.vstemplate
+            </ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Domain" CopyParameters="true">
+                APISeed.Domain\APISeed.Domain.vstemplate
+            </ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Tests" CopyParameters="true">
+                APISeed.Tests\APISeed.Tests.vstemplate
+            </ProjectTemplateLink>
+            <ProjectTemplateLink ProjectName="$safeprojectname$.Web" CopyParameters="true">
+                APISeed.Web\APISeed.Web.vstemplate
+            </ProjectTemplateLink>
+        </ProjectCollection>
+    </TemplateContent>
 </VSTemplate>

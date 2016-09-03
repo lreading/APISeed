@@ -2,9 +2,9 @@
 
 namespace APISeed.Domain.Errors
 {
-    public class ElmahErrorModel : IEntity
+    public class ElmahErrorModel : EntityBase
     {
-        public int Id { get; set; }
+        public override object Id { get; set; }
         public Guid ErrorId { get; set; }
         public string Application { get; set; }
         public string Host { get; set; }
