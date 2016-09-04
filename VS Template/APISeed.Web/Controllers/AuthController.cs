@@ -150,6 +150,7 @@ namespace $safeprojectname$.Controllers
             if (ModelState.IsValid)
             {
                 var user = new DataLayer.Models.ApplicationUser { UserName = model.Email, Email = model.Email };
+                user.Token = new Domain.Auth.BearerTokenModel();
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -393,6 +394,7 @@ namespace $safeprojectname$.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new DataLayer.Models.ApplicationUser { UserName = model.Email, Email = model.Email };
+                user.Token = new Domain.Auth.BearerTokenModel();
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

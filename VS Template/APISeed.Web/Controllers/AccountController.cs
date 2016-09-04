@@ -325,6 +325,7 @@ namespace $safeprojectname$.Controllers
             }
 
             var user = new DataLayer.Models.ApplicationUser() { UserName = model.Email, Email = model.Email };
+			user.Token = new Domain.Auth.BearerTokenModel();
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -354,7 +355,7 @@ namespace $safeprojectname$.Controllers
             }
 
             var user = new DataLayer.Models.ApplicationUser() { UserName = model.Email, Email = model.Email };
-
+			user.Token = new Domain.Auth.BearerTokenModel();
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)
             {
