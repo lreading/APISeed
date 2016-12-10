@@ -16,6 +16,7 @@ namespace APISeed
         /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
+            App_Start.SimpleInjectorWebApiInitializer.Initialize(app);
             ConfigureAuth(app);
         }
     }

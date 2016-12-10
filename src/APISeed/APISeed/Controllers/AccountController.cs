@@ -31,13 +31,6 @@ namespace APISeed.Controllers
         /// <summary>
         /// 
         /// </summary>
-        public AccountController()
-        {
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="userManager"></param>
         /// <param name="accessTokenFormat"></param>
         public AccountController(ApplicationUserManager userManager,

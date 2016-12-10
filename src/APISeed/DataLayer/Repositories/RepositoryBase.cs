@@ -62,16 +62,6 @@ namespace DataLayer.Repositories
         /// Creates a new instance of the repository base
         /// </summary>
         /// <param name="tableName"></param>
-        public RepositoryBase(string tableName)
-        {
-            _tableName = tableName;
-            _connectionFactory = new ConnectionFactory();
-        }
-
-        /// <summary>
-        /// Creates a new instance of the repository base
-        /// </summary>
-        /// <param name="tableName"></param>
         /// <param name="connectionFactory"></param>
         public RepositoryBase(string tableName, IConnectionFactory connectionFactory)
         {
