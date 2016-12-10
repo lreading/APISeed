@@ -16,6 +16,8 @@ namespace APISeed
         /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
+            var dalStartup = new DataLayer.Startup.Startup();
+            dalStartup.Init();
             App_Start.SimpleInjectorWebApiInitializer.Initialize(app);
             ConfigureAuth(app);
         }

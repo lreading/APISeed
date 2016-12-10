@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using DataLayer.Repositories;
+using Domain;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler;
@@ -24,6 +26,7 @@ namespace DataLayer
         {
             AuthReg(container, app);
             container.Register<IConnectionFactory, ConnectionFactory>(Lifestyle.Scoped);
+            // ex: container.Register<IAsyncRepository<WidgetModel>, WidgetRepository>(Lifestyle.Scoped);
         }
 
         private static void AuthReg(Container container, IAppBuilder app)
