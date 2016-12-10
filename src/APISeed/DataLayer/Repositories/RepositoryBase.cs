@@ -4,11 +4,13 @@ using Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
-    public abstract class RepositoryBase<T> : IRepository<T>, IDisposable where T : IEntity
+    public abstract class RepositoryBase<T> : IAsyncRepository<T>, IDisposable where T : IEntity
     {
 
         #region Fields, Properties and Constructors
@@ -73,17 +75,17 @@ namespace DataLayer.Repositories
 
         #region IRepository Implementation
 
-        public void Add(T item)
+        public async Task AddAsync(T item)
         {
-            using (var db = Connection)
+            using (var db = Connection as SqlConnection)
             {
                 var parameters = Mapping(item);
-                db.Open();
-                item.Id = db.Insert<int>(_tableName, parameters);
+                await db.OpenAsync();
+                item.Id = await db.InsertAsync<int>(_tableName, parameters);
             }
         }
 
-        public void Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             using (var db = Connection)
             {
@@ -91,11 +93,11 @@ namespace DataLayer.Repositories
 DELETE FROM     {0}
 WHERE           Id = @id
 ", _tableName);
-                db.Execute(sql, new { id = id });
+                await db.ExecuteAsync(sql, new { id = id });
             }
         }
 
-        public T Get(int id)
+        public async Task<T> GetAsync(int id)
         {
             using (var db = Connection)
             {
@@ -104,11 +106,12 @@ SELECT          *
 FROM            {0}
 WHERE           Id = @id
 ", _tableName);
-                return db.Query<T>(sql, new { id = id }).FirstOrDefault();
+                var items = await db.QueryAsync<T>(sql, new { id = id });
+                return items.FirstOrDefault();
             }
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             using (var db = Connection)
             {
@@ -116,23 +119,23 @@ WHERE           Id = @id
 SELECT          *
 FROM            {0}
 ", _tableName);
-                var all = db.Query<T>(sql);
+                var all = await db.QueryAsync<T>(sql);
                 return all;
             }
         }
 
-        public IEnumerable<T> GetAll(IQueryFilter filter)
+        public Task<IEnumerable<T>> GetAllAsync(IQueryFilter filter)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(T item)
+        public async Task UpdateAsync(T item)
         {
-            using (var db = Connection)
+            using (var db = Connection as SqlConnection)
             {
                 var parameters = Mapping(item);
-                db.Open();
-                db.Update(_tableName, parameters);
+                await db.OpenAsync();
+                await db.UpdateAsync(_tableName, parameters);
             }
         }
 

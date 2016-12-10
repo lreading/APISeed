@@ -1,5 +1,6 @@
 ﻿using Domain;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
@@ -7,14 +8,14 @@ namespace DataLayer.Repositories
     /// Generic repository implementation
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T> where T : IEntity
+    public interface IAsyncRepository<T> where T : IEntity
     {
         /// <summary>
         /// Gets a specific item by id from the repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        T Get(int id);
+        Task<T> GetAsync(int id);
 
         /// <summary>
         /// Gets all items from the repository
@@ -23,31 +24,31 @@ namespace DataLayer.Repositories
         /// Use with care, could be a lot of data.
         /// </remarks>
         /// <returns></returns>
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync();
 
         /// <summary>
         /// Gets all items that match the filter
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        IEnumerable<T> GetAll(IQueryFilter filter);
+        Task<IEnumerable<T>> GetAllAsync(IQueryFilter filter);
 
         /// <summary>
         /// Adds an item to the repository
         /// </summary>
         /// <param name="item"></param>
-        void Add(T item);
+        Task AddAsync(T item);
 
         /// <summary>
         /// Updates an existing item in the repository
         /// </summary>
         /// <param name="item"></param>
-        void Update(T item);
+        Task UpdateAsync(T item);
 
         /// <summary>
         /// Deletes an existing item from the repository
         /// </summary>
         /// <param name="id"></param>
-        void Delete(int id);
+        Task DeleteAsync(int id);
     }
 }

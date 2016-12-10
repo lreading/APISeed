@@ -209,6 +209,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApiBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Extensions\Owin\OwinExtensions.cs" />
     <Compile Include="Global.asax.cs">
