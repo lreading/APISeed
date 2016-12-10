@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DataLayer
+namespace Template.DataLayer
 {
     /// <summary>
     /// Handles connection related tasks for database work

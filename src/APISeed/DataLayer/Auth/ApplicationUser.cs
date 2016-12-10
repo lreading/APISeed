@@ -1,10 +1,10 @@
-﻿using Domain.Auth;
+﻿using Template.Domain.Auth;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace DataLayer.Auth
+namespace Template.DataLayer.Auth
 { 
     public class ApplicationUser : IdentityUser<int, UserLogin, UserRole, UserClaim>
     {

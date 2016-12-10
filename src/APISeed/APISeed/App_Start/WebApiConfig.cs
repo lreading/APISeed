@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 
-namespace APISeed
+namespace Template.APISeed
 {
     /// <summary>
     /// 

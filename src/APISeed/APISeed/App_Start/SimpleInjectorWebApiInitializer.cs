@@ -2,9 +2,9 @@ using System.Web.Http;
 using SimpleInjector;
 using SimpleInjector.Integration.WebApi;
 using Owin;
-using APISeed.Extensions.Owin;
+using Template.APISeed.Extensions.Owin;
 
-namespace APISeed.App_Start
+namespace Template.APISeed.App_Start
 {
     /// <summary>
     /// 

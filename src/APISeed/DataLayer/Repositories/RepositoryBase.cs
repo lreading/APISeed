@@ -1,6 +1,6 @@
 ﻿using Dapper;
-using DataLayer.Extensions;
-using Domain;
+using Template.DataLayer.Extensions;
+using Template.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataLayer.Repositories
+namespace Template.DataLayer.Repositories
 {
     public abstract class RepositoryBase<T> : IAsyncRepository<T>, IDisposable where T : IEntity
     {

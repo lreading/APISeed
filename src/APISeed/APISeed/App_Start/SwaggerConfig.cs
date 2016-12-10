@@ -1,6 +1,6 @@
 using System.Web.Http;
 using WebActivatorEx;
-using APISeed;
+using Template.APISeed;
 using Swashbuckle.Application;
 using Swashbuckle.Swagger;
 using System.Web.Http.Description;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace APISeed
+namespace Template.APISeed
 {
     /// <summary>
     /// Configuration for swagger

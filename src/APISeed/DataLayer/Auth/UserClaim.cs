@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace DataLayer.Auth
+namespace Template.DataLayer.Auth
 {
     public class UserClaim : IdentityUserClaim<int>
     {

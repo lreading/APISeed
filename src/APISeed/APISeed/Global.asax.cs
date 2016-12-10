@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace APISeed
+namespace Template.APISeed
 {
     /// <summary>
     /// Entry point for the application

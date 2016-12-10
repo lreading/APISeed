@@ -1,17 +1,13 @@
 ﻿using Dapper;
-using DataLayer.Auth;
-using Domain.Auth;
+using Template.DataLayer.Auth;
+using Template.Domain.Auth;
 using log4net;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DataLayer.Startup
+namespace Template.DataLayer.Startup
 {
     /// <summary>
     /// Handles updating the schema when necessary

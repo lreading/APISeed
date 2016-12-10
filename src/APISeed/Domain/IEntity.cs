@@ -1,4 +1,4 @@
-﻿namespace Domain
+﻿namespace Template.Domain
 {
     public interface IEntity
     {

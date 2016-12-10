@@ -1,7 +1,7 @@
-﻿using DataLayer.Auth;
+﻿using Template.DataLayer.Auth;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace DataLayer
+namespace Template.DataLayer
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, int, UserLogin, UserRole, UserClaim>
     {

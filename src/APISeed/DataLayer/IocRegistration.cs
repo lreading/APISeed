@@ -1,5 +1,5 @@
-﻿using DataLayer.Repositories;
-using Domain;
+﻿using Template.DataLayer.Repositories;
+using Template.Domain;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -11,7 +11,7 @@ using Owin;
 using SimpleInjector;
 using System;
 
-namespace DataLayer
+namespace Template.DataLayer
 {
     /// <summary>
     /// Registers types for the data layer

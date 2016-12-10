@@ -1,9 +1,9 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(APISeed.Startup))]
+[assembly: OwinStartup(typeof(Template.APISeed.Startup))]
 
-namespace APISeed
+namespace Template.APISeed
 {
     /// <summary>
     /// 

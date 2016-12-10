@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace APISeed
+namespace Template.APISeed
 {
     /// <summary>
     /// 

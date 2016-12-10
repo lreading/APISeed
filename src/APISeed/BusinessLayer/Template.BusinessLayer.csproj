@@ -7,8 +7,8 @@
     <ProjectGuid>{3A185AD6-1BDF-4C70-BB04-1571D21663C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BusinessLayer</RootNamespace>
-    <AssemblyName>BusinessLayer</AssemblyName>
+    <RootNamespace>Template.BusinessLayer</RootNamespace>
+    <AssemblyName>Template.BusinessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

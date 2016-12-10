@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>APISeed</RootNamespace>
-    <AssemblyName>APISeed</AssemblyName>
+    <RootNamespace>Template.APISeed</RootNamespace>
+    <AssemblyName>Template.APISeed</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -34,7 +34,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\APISeed.XML</DocumentationFile>
+    <DocumentationFile>bin\Template.APISeed.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,7 +43,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\APISeed.XML</DocumentationFile>
+    <DocumentationFile>bin\Template.APISeed.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -268,13 +268,17 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
-      <Project>{9C21D339-FB46-4488-B56D-7A7AAA409D9B}</Project>
-      <Name>DataLayer</Name>
+    <ProjectReference Include="..\BusinessLayer\Template.BusinessLayer.csproj">
+      <Project>{3a185ad6-1bdf-4c70-bb04-1571d21663c9}</Project>
+      <Name>Template.BusinessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\Domain.csproj">
+    <ProjectReference Include="..\DataLayer\Template.DataLayer.csproj">
+      <Project>{9C21D339-FB46-4488-B56D-7A7AAA409D9B}</Project>
+      <Name>Template.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Template.Domain.csproj">
       <Project>{b13c9410-3d3d-4f54-bc33-af93b75a0811}</Project>
-      <Name>Domain</Name>
+      <Name>Template.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

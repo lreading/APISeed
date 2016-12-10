@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataLayer.Startup
+namespace Template.DataLayer.Startup
 {
     /// <summary>
     /// Class to hold our schema related scripts.

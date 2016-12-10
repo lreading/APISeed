@@ -7,8 +7,8 @@
     <ProjectGuid>{9C21D339-FB46-4488-B56D-7A7AAA409D9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataLayer</RootNamespace>
-    <AssemblyName>DataLayer</AssemblyName>
+    <RootNamespace>Template.DataLayer</RootNamespace>
+    <AssemblyName>Template.DataLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -125,9 +125,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\Template.Domain.csproj">
       <Project>{B13C9410-3D3D-4F54-BC33-AF93B75A0811}</Project>
-      <Name>Domain</Name>
+      <Name>Template.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

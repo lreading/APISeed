@@ -3,7 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
 
-namespace DataLayer.Auth
+namespace Template.DataLayer.Auth
 {
     public class ApplicationUserManager : UserManager<ApplicationUser, int>
     {

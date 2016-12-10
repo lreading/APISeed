@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace APISeed.Models
+namespace Template.APISeed.Models
 {
     // Models returned by AccountController actions.
 

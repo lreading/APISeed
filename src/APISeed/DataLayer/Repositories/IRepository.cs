@@ -1,8 +1,8 @@
-﻿using Domain;
+﻿using Template.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataLayer.Repositories
+namespace Template.DataLayer.Repositories
 {
     /// <summary>
     /// Generic repository implementation

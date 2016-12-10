@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DataLayer.Extensions
+namespace Template.DataLayer.Extensions
 {
     // Borrowed from: https://github.com/bbraithwaite/RepoWrapper/blob/master/QueryResult.cs
     /// <summary>

@@ -11,12 +11,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using APISeed.Models;
-using APISeed.Providers;
-using APISeed.Results;
-using DataLayer.Auth;
+using Template.APISeed.Models;
+using Template.APISeed.Providers;
+using Template.APISeed.Results;
+using Template.DataLayer.Auth;
 
-namespace APISeed.Controllers
+namespace Template.APISeed.Controllers
 {
     /// <summary>
     /// Handles all account related work

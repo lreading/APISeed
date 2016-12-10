@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Auth
+namespace Template.Domain.Auth
 {
     public class BearerTokenModel
     {

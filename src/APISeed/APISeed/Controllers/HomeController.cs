@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace APISeed.Controllers
+namespace Template.APISeed.Controllers
 {
     /// <summary>
     /// 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DataLayer.Extensions
+namespace Template.DataLayer.Extensions
 {
     /// <summary>
     /// A result object with the generated sql and dynamic params.

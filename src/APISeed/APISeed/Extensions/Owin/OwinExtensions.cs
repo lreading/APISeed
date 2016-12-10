@@ -2,7 +2,7 @@
 using SimpleInjector;
 using SimpleInjector.Extensions.ExecutionContextScoping;
 
-namespace APISeed.Extensions.Owin
+namespace Template.APISeed.Extensions.Owin
 {
     /// <summary>
     /// Extension methods for Owin related components

@@ -1,11 +1,11 @@
 ﻿using System;
-using DataLayer.Repositories;
-using Domain;
+using Template.DataLayer.Repositories;
+using Template.Domain;
 using log4net;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace APISeed.Controllers
+namespace Template.APISeed.Controllers
 {
     /// <summary>
     /// The base API controller

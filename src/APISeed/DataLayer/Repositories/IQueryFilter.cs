@@ -1,4 +1,4 @@
-﻿namespace DataLayer.Repositories
+﻿namespace Template.DataLayer.Repositories
 {
     /// <summary>
     /// Constructs a filter to be used for a repository query

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace DataLayer
+namespace Template.DataLayer
 {
     /// <summary>
     /// Minimal interface to describe our connection factories.

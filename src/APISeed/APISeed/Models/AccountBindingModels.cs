@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace APISeed.Models
+namespace Template.APISeed.Models
 {
     // Models used as parameters to AccountController actions.
     /// <summary>

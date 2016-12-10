@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: XmlConfigurator(ConfigFile = "Log4Net.config", Watch = true)]
-[assembly: AssemblyTitle("APISeed")]
+[assembly: AssemblyTitle("Template.APISeed")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]

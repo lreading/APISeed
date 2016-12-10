@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace DataLayer.Extensions
+namespace Template.DataLayer.Extensions
 {
     /// <summary>
     /// Dynamic query class.

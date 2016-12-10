@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using DataLayer.Auth;
+using Template.DataLayer.Auth;
 
-namespace APISeed.Providers
+namespace Template.APISeed.Providers
 {
     /// <summary>
     /// OAuth provider for this application
