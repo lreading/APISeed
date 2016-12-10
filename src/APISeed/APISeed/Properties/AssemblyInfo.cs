@@ -1,10 +1,11 @@
-﻿using System.Reflection;
-using System.Runtime.CompilerServices;
+﻿using log4net.Config;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+[assembly: XmlConfigurator(ConfigFile = "Log4Net.config", Watch = true)]
 [assembly: AssemblyTitle("APISeed")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
