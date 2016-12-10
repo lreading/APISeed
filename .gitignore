@@ -1,11 +1,6 @@
-APISeed.DataLayer/bin/*
-APISeed.DataLayer/obj/*
-APISeed.Domain/bin/*
-APISeed.Domain/obj/*
-APISeed.Tests/bin/*
-APISeed.Tests/obj/*
-APISeed.Web/bin/*
-APISeed.Web/obj/*
-packages/*
-APISeed.BusinessLayer/bin/*
-APISeed.BusinessLayer/obj/*
+src/APISeed/APISeed/bin/
+src/APISeed/.vs
+src/APISeed/APISeed/obj/
+obj/
+bin/
+packages/
