@@ -10,10 +10,17 @@ using DataLayer.Auth;
 
 namespace APISeed.Providers
 {
+    /// <summary>
+    /// OAuth provider for this application
+    /// </summary>
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="publicClientId"></param>
         public ApplicationOAuthProvider(string publicClientId)
         {
             if (publicClientId == null)
@@ -24,6 +31,11 @@ namespace APISeed.Providers
             _publicClientId = publicClientId;
         }
 
+        /// <summary>
+        /// Grands credentials
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
@@ -47,6 +59,11 @@ namespace APISeed.Providers
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
+        /// <summary>
+        /// The endpoint that grants tokens
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
@@ -57,6 +74,11 @@ namespace APISeed.Providers
             return Task.FromResult<object>(null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             // Resource owner password credentials does not provide a client ID.
@@ -68,6 +90,11 @@ namespace APISeed.Providers
             return Task.FromResult<object>(null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
             if (context.ClientId == _publicClientId)
@@ -83,6 +110,11 @@ namespace APISeed.Providers
             return Task.FromResult<object>(null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         public static AuthenticationProperties CreateProperties(string userName)
         {
             IDictionary<string, string> data = new Dictionary<string, string>

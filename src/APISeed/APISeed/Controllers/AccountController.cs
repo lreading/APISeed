@@ -6,9 +6,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -20,6 +18,9 @@ using DataLayer.Auth;
 
 namespace APISeed.Controllers
 {
+    /// <summary>
+    /// Handles all account related work
+    /// </summary>
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -27,10 +28,18 @@ namespace APISeed.Controllers
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AccountController()
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="accessTokenFormat"></param>
         public AccountController(ApplicationUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
@@ -38,6 +47,9 @@ namespace APISeed.Controllers
             AccessTokenFormat = accessTokenFormat;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ApplicationUserManager UserManager
         {
             get
@@ -50,9 +62,15 @@ namespace APISeed.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
-        // GET api/Account/UserInfo
+        
+        /// <summary>
+        /// Gets the user's information
+        /// </summary>
+        /// <returns></returns>
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -67,7 +85,10 @@ namespace APISeed.Controllers
             };
         }
 
-        // POST api/Account/Logout
+        /// <summary>
+        /// Logs out of the application
+        /// </summary>
+        /// <returns></returns>
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
@@ -75,7 +96,12 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
+        /// <summary>
+        /// Gets the manage info
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <param name="generateState"></param>
+        /// <returns></returns>
         [Route("ManageInfo")]
         public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
         {
@@ -115,7 +141,11 @@ namespace APISeed.Controllers
             };
         }
 
-        // POST api/Account/ChangePassword
+        /// <summary>
+        /// Changes a user's password
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -135,7 +165,11 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // POST api/Account/SetPassword
+        /// <summary>
+        /// Sets a user's password
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("SetPassword")]
         public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
         {
@@ -154,7 +188,11 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // POST api/Account/AddExternalLogin
+        /// <summary>
+        /// Adds an external login
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("AddExternalLogin")]
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
@@ -192,7 +230,11 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // POST api/Account/RemoveLogin
+        /// <summary>
+        /// Removes a login
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [Route("RemoveLogin")]
         public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
         {
@@ -221,7 +263,12 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // GET api/Account/ExternalLogin
+        /// <summary>
+        /// Logs in from an external source
+        /// </summary>
+        /// <param name="provider"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalCookie)]
         [AllowAnonymous]
@@ -278,7 +325,12 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // GET api/Account/ExternalLogins?returnUrl=%2F&generateState=true
+        /// <summary>
+        /// Gets the user's external logins
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <param name="generateState"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route("ExternalLogins")]
         public IEnumerable<ExternalLoginViewModel> GetExternalLogins(string returnUrl, bool generateState = false)
@@ -319,7 +371,11 @@ namespace APISeed.Controllers
             return logins;
         }
 
-        // POST api/Account/Register
+        /// <summary>
+        /// Registers a new account
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
@@ -329,7 +385,7 @@ namespace APISeed.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Token = new Domain.Auth.BearerTokenModel() };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -341,7 +397,11 @@ namespace APISeed.Controllers
             return Ok();
         }
 
-        // POST api/Account/RegisterExternal
+        /// <summary>
+        /// Registers an account via an external source
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("RegisterExternal")]
@@ -358,7 +418,7 @@ namespace APISeed.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, Token = new Domain.Auth.BearerTokenModel() };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)
@@ -374,6 +434,10 @@ namespace APISeed.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Disposes the controller
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
