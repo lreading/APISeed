@@ -268,15 +268,15 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\Template.BusinessLayer.csproj">
+    <ProjectReference Include="..\Template.BusinessLayer\Template.BusinessLayer.csproj">
       <Project>{3a185ad6-1bdf-4c70-bb04-1571d21663c9}</Project>
       <Name>Template.BusinessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayer\Template.DataLayer.csproj">
-      <Project>{9C21D339-FB46-4488-B56D-7A7AAA409D9B}</Project>
+    <ProjectReference Include="..\Template.DataLayer\Template.DataLayer.csproj">
+      <Project>{9c21d339-fb46-4488-b56d-7a7aaa409d9b}</Project>
       <Name>Template.DataLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Domain\Template.Domain.csproj">
+    <ProjectReference Include="..\Template.Domain\Template.Domain.csproj">
       <Project>{b13c9410-3d3d-4f54-bc33-af93b75a0811}</Project>
       <Name>Template.Domain</Name>
     </ProjectReference>
@@ -299,7 +299,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54177</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54177/</IISUrl>
+          <IISUrl>http://localhost:54179/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

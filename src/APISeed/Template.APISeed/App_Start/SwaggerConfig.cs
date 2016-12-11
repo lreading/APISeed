@@ -265,7 +265,7 @@ namespace Template.APISeed
         /// <returns></returns>
         protected static string GetXmlCommentsPath()
         {
-            return $@"{System.AppDomain.CurrentDomain.BaseDirectory}\bin\APISeed.xml";
+            return $@"{System.AppDomain.CurrentDomain.BaseDirectory}\bin\Template.APISeed.xml";
         }
     }
 

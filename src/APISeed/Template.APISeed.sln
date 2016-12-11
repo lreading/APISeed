@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.APISeed", "APISeed\Template.APISeed.csproj", "{C8D547ED-DBFE-4EAA-A20C-99543815B2C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.APISeed", "Template.APISeed\Template.APISeed.csproj", "{C8D547ED-DBFE-4EAA-A20C-99543815B2C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Domain", "Domain\Template.Domain.csproj", "{B13C9410-3D3D-4F54-BC33-AF93B75A0811}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.Domain", "Template.Domain\Template.Domain.csproj", "{B13C9410-3D3D-4F54-BC33-AF93B75A0811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.DataLayer", "DataLayer\Template.DataLayer.csproj", "{9C21D339-FB46-4488-B56D-7A7AAA409D9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.DataLayer", "Template.DataLayer\Template.DataLayer.csproj", "{9C21D339-FB46-4488-B56D-7A7AAA409D9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.BusinessLayer", "BusinessLayer\Template.BusinessLayer.csproj", "{3A185AD6-1BDF-4C70-BB04-1571D21663C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template.BusinessLayer", "Template.BusinessLayer\Template.BusinessLayer.csproj", "{3A185AD6-1BDF-4C70-BB04-1571D21663C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
